@@ -1,10 +1,14 @@
 import Link from "next/link";
+import Menu from "./Menu";
+import { useState } from "react";
 
-export default function Links({ categories }) {
+export default function Links({ categories, aboutUs }) {
+  const [openMenu, setOpenMenu] = useState(false);
   return (
     <div className="h-auto bg-gray-50 shadow-sm font-serif font-light">
-      <nav className="container mx-auto flex justify-around">
-        <div>
+      {openMenu && <Menu setOpenMenu={setOpenMenu} aboutUs={aboutUs} />}
+      <nav className="container mx-auto flex justify-around items-center">
+        <div onClick={() => setOpenMenu(true)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -35,7 +39,7 @@ export default function Links({ categories }) {
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="h-6 w-6 my-1"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

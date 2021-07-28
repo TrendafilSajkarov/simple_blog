@@ -19,7 +19,7 @@ export default function Home(props) {
         <title>Simple Blog</title>
         <link rel="icon" href="/logo.ico" />
       </Head>
-      <Navbar categories={props.data.categories} />
+      <Navbar categories={props.data.categories} aboutUs={props.data.aboutUs} />
       <Latest
         featuredPosts={featuredFourPosts}
         categories={props.data.categories}
