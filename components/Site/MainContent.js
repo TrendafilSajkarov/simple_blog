@@ -8,40 +8,42 @@ export default function MainContent({ latestPost, latestPosts, categories }) {
       <h4 className="uppercase font-serif text-yellow-600 text-xs mb-3 px-4">
         Latest Posts
       </h4>
-      <article className="prose-sm group px-4 text-center row-span-1 h-screen max-h-760 flex flex-col items-center justify-center">
-        <div className="relative w-full h-2/3 shadow-md">
-          <Image
-            src={latestPost.featuredImage}
-            layout="fill"
-            objectFit="cover"
-            quality={100}
-          />
-          <div className="absolute top-4 flex flex-col items-center bg-gray-100 bg-opacity-50 w py-2 px-6 mx-6 shadow-lg">
-            <div className="text-4xl font-extrabold text-gray-700 ">
-              {getDate(latestPost.createdAt)[0]}
-            </div>
-            <div className="text-base font-medium h-auto text-gray-700">
-              {getDate(latestPost.createdAt)[1]}
+      {latestPost && (
+        <article className="prose-sm group px-4 text-center row-span-1 h-screen max-h-760 flex flex-col items-center justify-center">
+          <div className="relative w-full h-2/3 shadow-md">
+            <Image
+              src={latestPost.featuredImage}
+              layout="fill"
+              objectFit="cover"
+              quality={100}
+            />
+            <div className="absolute top-4 flex flex-col items-center bg-gray-100 bg-opacity-50 w py-2 px-6 mx-6 shadow-lg">
+              <div className="text-4xl font-extrabold text-gray-700 ">
+                {getDate(latestPost.createdAt)[0]}
+              </div>
+              <div className="text-base font-medium h-auto text-gray-700">
+                {getDate(latestPost.createdAt)[1]}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="flex-col items-center font-serif">
-          <h4 className="uppercase text-yellow-600 text-xs ">
-            {getCategoryName(categories, latestPost.fromCategory)}
-          </h4>
-          <h3 className="font-light group-hover:underline">
-            {latestPost.title}
-          </h3>
-          <p className="text-xs text-gray-400">By Admin | 3 min read</p>
-          <p className="text-xs line-clamp-5">{latestPosts[0].excerpt}</p>
-          <button className="border-2 border-yellow-600 uppercase hover:underline shadow-md px-6 py-1 text-gray-600 text-xs">
-            Read More
-          </button>
-        </div>
-      </article>
+          <div className="flex-col items-center font-serif">
+            <h4 className="uppercase text-yellow-600 text-xs ">
+              {getCategoryName(categories, latestPost.fromCategory)}
+            </h4>
+            <h3 className="text- font-light group-hover:underline">
+              {latestPost.title}
+            </h3>
+            <p className="text-xs text-gray-400">By Admin | 3 min read</p>
+            <p className="text-base line-clamp-5">{latestPosts[0].excerpt}</p>
+            <button className="border-2 border-yellow-600 uppercase hover:underline shadow-md px-6 py-1 text-gray-600 text-xs">
+              Read More
+            </button>
+          </div>
+        </article>
+      )}
       <section className="row-span-2 pt-5 flex flex-wrap justify-between items-center">
         {latestPosts.map((post, i) => {
-          if (i === 0) {
+          if (latestPost !== null && i === 0) {
             return null;
           }
           return (
@@ -67,11 +69,11 @@ export default function MainContent({ latestPost, latestPosts, categories }) {
                 <h4 className="uppercase text-yellow-600 text-xs ">
                   {getCategoryName(categories, post.fromCategory)}
                 </h4>
-                <h3 className="font-light group-hover:underline">
+                <h3 className="text-lg font-medium group-hover:underline">
                   {post.title}
                 </h3>
                 <p className="text-xs text-gray-400">By Admin | 3 min read</p>
-                <p className="text-xs line-clamp-3">{post.excerpt}</p>
+                <p className="text-base line-clamp-3">{post.excerpt}</p>
                 <button className="border-2 border-yellow-600 uppercase hover:underline shadow-md px-6 py-1 mt-3 text-gray-600 text-xs">
                   Read More
                 </button>

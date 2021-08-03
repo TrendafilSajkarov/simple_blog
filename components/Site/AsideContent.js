@@ -14,12 +14,12 @@ export default function AsideContent({
         <h4 className="uppercase font-serif text-yellow-600 text-xs mb-3">
           About Us
         </h4>
-        <div className="prose-sm font-serif text-xs">
-          <div className="relative w-full h-40">
-            <Image src={aboutUs[0].featuredImage} layout="fill" />
+        <div className="prose-sm font-serif text-base">
+          <div className="relative w-full h-52">
+            <Image src={aboutUs.featuredImage} layout="fill" />
           </div>
           <div className="">
-            <p>{aboutUs[0].content}</p>
+            <p>{aboutUs.content}</p>
           </div>
         </div>
       </article>
@@ -46,7 +46,7 @@ export default function AsideContent({
                     <h4 className="uppercase text-yellow-600 text-xs ">
                       {getCategoryName(categories, post.fromCategory)}
                     </h4>
-                    <h3 className="font-light group-hover:underline prose-sm ">
+                    <h3 className="font-light group-hover:underline prose-sm text-base">
                       {post.title}
                     </h3>
                     <p className="text-xs prose-sm text-gray-400">
@@ -70,7 +70,7 @@ export default function AsideContent({
                 key={category._id}
                 className="flex font-serif justify-between group border-b-2 border-red-300"
               >
-                <h3 className=" group-hover:text-red-300 font-light prose-sm ">
+                <h3 className=" group-hover:text-red-300 font-light prose-sm text-base ">
                   {category.name}
                 </h3>
                 <h3 className="font-light group-hover:text-red-300 text-xs prose-sm text-gray-500 self-end">

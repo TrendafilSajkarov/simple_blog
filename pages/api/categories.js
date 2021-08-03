@@ -18,28 +18,17 @@ export default async function helloAPI(req, res) {
 
   const categories = await db.collection("categories").find({}).toArray();
 
-  const latestPosts = await db
-    .collection("posts")
-    .find({})
-    .sort({ _id: -1 })
-    .limit(11)
-    .toArray();
+  const about = categories.filter((category) => category.slug === "about");
+  const aboutUs = about[0];
 
   const featuredPosts = await db
     .collection("posts")
     .find({ isFeaturedPost: true })
     .sort({ _id: -1 })
-    .limit(10)
+    .limit(6)
     .toArray();
-
-  const about = await db
-    .collection("categories")
-    .find({ slug: "about" })
-    .toArray();
-
-  const aboutUs = about[0];
 
   client.close();
 
-  res.status(200).json({ categories, latestPosts, featuredPosts, aboutUs });
+  res.status(200).json({ categories, aboutUs, featuredPosts });
 }

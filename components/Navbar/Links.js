@@ -29,7 +29,12 @@ export default function Links({ categories, aboutUs }) {
           <ul className="flex justify-around">
             {categories.map((category) => (
               <li key={category._id}>
-                <Link href={`/${category.slug}`}>
+                <Link
+                  href={{
+                    pathname: "/[category]",
+                    query: { category: category.slug },
+                  }}
+                >
                   <a className="uppercase hover:underline">{category.name}</a>
                 </Link>
               </li>

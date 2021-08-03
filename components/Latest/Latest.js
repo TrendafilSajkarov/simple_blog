@@ -30,7 +30,7 @@ export default function Latest({ categories, featuredPosts }) {
             <h3 className="text-xl font-light font-serif text-white prose-sm group-hover:underline">
               {featuredPosts[0].title}
             </h3>
-            <p className="prose-sm font-serif text-white font-extralight line-clamp-3">
+            <p className="prose-sm text-base font-serif text-white font-extralight line-clamp-3">
               {featuredPosts[0].excerpt}
             </p>
           </div>
@@ -115,7 +115,7 @@ export default function Latest({ categories, featuredPosts }) {
               <h3 className="text-xl font-light font-serif text-white text-shadow group-hover:underline">
                 {featuredPosts[3].title}
               </h3>
-              <p className="prose-sm font-serif text-white font-extralight line-clamp-3">
+              <p className="prose-sm text-base font-serif text-white font-extralight line-clamp-3">
                 {featuredPosts[3].excerpt}
               </p>
             </div>

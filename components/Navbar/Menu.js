@@ -94,10 +94,10 @@ export default function Menu({ setOpenMenu, aboutUs }) {
                       </h4>
                       <div className="prose-sm font-serif text-xs">
                         <div className="relative w-full h-48">
-                          <Image src={aboutUs[0].featuredImage} layout="fill" />
+                          <Image src={aboutUs.featuredImage} layout="fill" />
                         </div>
-                        <div className="">
-                          <p>{aboutUs[0].content}</p>
+                        <div className="text-sm">
+                          <p>{aboutUs.content}</p>
                         </div>
                       </div>
                     </article>
