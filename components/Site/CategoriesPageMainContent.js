@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { getCategoryName, getDate } from "../../utils/utils";
+import { getCategoryName, getDate, getCategorySlug } from "../../utils/utils";
 
 export default function CategoriesPageMainContent({ latestPosts, categories }) {
   return (
-    <main className="col-span-2 flex flex-col">
+    <main className="col-span-2 flex flex-col px-1">
       <h4 className="uppercase font-serif text-yellow-600 text-xs">
         Latest Posts
       </h4>
@@ -33,14 +34,31 @@ export default function CategoriesPageMainContent({ latestPosts, categories }) {
                   <h4 className="uppercase text-yellow-600 text-xs ">
                     {getCategoryName(categories, post.fromCategory)}
                   </h4>
-                  <h3 className="text-lg font-medium group-hover:underline">
-                    {post.title}
-                  </h3>
+                  <Link
+                    href={`/${getCategorySlug(categories, post.fromCategory)}/${
+                      post.slug
+                    }`}
+                  >
+                    <a>
+                      <h3 className="text-lg font-medium group-hover:underline">
+                        {post.title}
+                      </h3>
+                    </a>
+                  </Link>
+
                   <p className="text-xs text-gray-400">By Admin | 3 min read</p>
                   <p className="text-base line-clamp-5">{post.excerpt}</p>
-                  <button className="border-2 border-yellow-600 uppercase hover:underline shadow-md px-6 py-1 mt-6 text-gray-600 text-xs">
-                    Read More
-                  </button>
+                  <Link
+                    href={`/${getCategorySlug(categories, post.fromCategory)}/${
+                      post.slug
+                    }`}
+                  >
+                    <a>
+                      <button className="border-2 border-yellow-600 uppercase hover:underline shadow-md px-6 py-1 mt-6 text-gray-600 text-xs">
+                        Read More
+                      </button>
+                    </a>
+                  </Link>
                 </div>
               </li>
             );

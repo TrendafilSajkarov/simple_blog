@@ -16,19 +16,12 @@ export default async function helloAPI(req, res) {
 
   // const collection = db.collection("categories");
 
-  const categories = await db.collection("categories").find({}).toArray();
-
-  const about = categories.filter((category) => category.slug === "about");
-  const aboutUs = about[0];
-
-  const featuredPosts = await db
+  const singlePost = await db
     .collection("posts")
-    .find({ isFeaturedPost: true })
-    .sort({ _id: -1 })
-    .limit(6)
+    .find({ slug: req.query.post })
     .toArray();
 
   client.close();
 
-  res.status(200).json({ categories, aboutUs, featuredPosts });
+  res.status(200).json({ singlePost });
 }

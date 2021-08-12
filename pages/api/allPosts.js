@@ -13,19 +13,9 @@ export default async function helloAPI(req, res) {
 
   const db = client.db("test");
 
-  const category = await db
-    .collection("categories")
-    .find({ slug: req.query.category })
-    .toArray();
-
-  const posts = await db
-    .collection("posts")
-    .find({ fromCategory: category[0]._id })
-    .sort({ _id: -1 })
-    .limit(10)
-    .toArray();
+  const allPosts = await db.collection("posts").find({}).toArray();
 
   client.close();
 
-  res.status(200).json({ posts, category });
+  res.status(200).json({ allPosts });
 }

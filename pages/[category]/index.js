@@ -7,7 +7,7 @@ export default function CategoryPage({ data, categories }) {
   return (
     <div>
       <Navbar categories={categories.categories} aboutUs={categories.aboutUs} />
-      <section className="container grid grid-cols-3 gap-4 w-3/4 mx-auto my-6">
+      <section className="container grid grid-cols-2 auto-rows-auto w-11/12 lg:grid-cols-3 gap-4 xl:w-3/4 max-w-screen-xl mx-auto my-6">
         <CategoriesPageMainContent
           latestPosts={data.posts}
           categories={categories.categories}
@@ -18,13 +18,6 @@ export default function CategoryPage({ data, categories }) {
           categories={categories.categories}
         />
       </section>
-      {/* <h1>{`This is ${data.category[0].name} Category page`}</h1>
-      <ul>
-        {data.posts &&
-          data.posts.map((post) => {
-            return <li key={post._id}>{post.title}</li>;
-          })}
-      </ul> */}
       <Footer />
     </div>
   );

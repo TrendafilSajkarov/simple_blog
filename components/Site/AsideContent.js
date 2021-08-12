@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { getCategoryName } from "../../utils/utils";
+import { getCategoryName, getCategorySlug } from "../../utils/utils";
 
 export default function AsideContent({
   aboutUs,
@@ -9,7 +10,7 @@ export default function AsideContent({
 }) {
   const catWithPosts = categories.filter((cat) => cat.hasOwnProperty("posts"));
   return (
-    <aside className="flex flex-col ">
+    <aside className="flex px-1 my-5 col-span-2 flex-col md:col-span-2 md:grid md:grid-cols-2 md:auto-rows-auto md:space-y-5 md:space-x-3 lg:flex lg:col-span-1 lg:flex-col ">
       <article className="w-full">
         <h4 className="uppercase font-serif text-yellow-600 text-xs mb-3">
           About Us
@@ -46,9 +47,19 @@ export default function AsideContent({
                     <h4 className="uppercase text-yellow-600 text-xs ">
                       {getCategoryName(categories, post.fromCategory)}
                     </h4>
-                    <h3 className="font-light group-hover:underline prose-sm text-base">
-                      {post.title}
-                    </h3>
+                    <Link
+                      href={`/${getCategorySlug(
+                        categories,
+                        post.fromCategory
+                      )}/${post.slug}`}
+                    >
+                      <a>
+                        <h3 className="font-light group-hover:underline prose-sm text-base">
+                          {post.title}
+                        </h3>
+                      </a>
+                    </Link>
+
                     <p className="text-xs prose-sm text-gray-400">
                       By Admin | 3 min read
                     </p>
@@ -66,22 +77,28 @@ export default function AsideContent({
         <ul>
           {catWithPosts.map((category) => {
             return (
-              <li
-                key={category._id}
-                className="flex font-serif justify-between group border-b-2 border-red-300"
-              >
-                <h3 className=" group-hover:text-red-300 font-light prose-sm text-base ">
-                  {category.name}
-                </h3>
-                <h3 className="font-light group-hover:text-red-300 text-xs prose-sm text-gray-500 self-end">
-                  {category.posts.length} posts
-                </h3>
+              <li key={category._id}>
+                <Link
+                  href={{
+                    pathname: "/[category]",
+                    query: { category: category.slug },
+                  }}
+                >
+                  <a className="flex font-serif justify-between group border-b-2 border-red-300">
+                    <h3 className=" group-hover:text-red-300 font-light prose-sm text-base ">
+                      {category.name}
+                    </h3>
+                    <h3 className="font-light group-hover:text-red-300 text-xs prose-sm text-gray-500 self-end">
+                      {category.posts.length} posts
+                    </h3>
+                  </a>
+                </Link>
               </li>
             );
           })}
         </ul>
       </section>
-      <section className="mt-12">
+      <section className="mt-12 max-w-screen-sm self-center">
         <h4 className="uppercase font-serif text-yellow-600 text-xs mb-3">
           Subscribe
         </h4>

@@ -6,7 +6,13 @@ export default function Links({ categories, aboutUs }) {
   const [openMenu, setOpenMenu] = useState(false);
   return (
     <div className="h-auto bg-gray-50 shadow-sm font-serif font-light">
-      {openMenu && <Menu setOpenMenu={setOpenMenu} aboutUs={aboutUs} />}
+      {openMenu && (
+        <Menu
+          setOpenMenu={setOpenMenu}
+          aboutUs={aboutUs}
+          categories={categories}
+        />
+      )}
       <nav className="container mx-auto flex justify-around items-center">
         <div onClick={() => setOpenMenu(true)}>
           <svg
@@ -25,16 +31,16 @@ export default function Links({ categories, aboutUs }) {
           </svg>
         </div>
 
-        <div className="flex-1 max-w-xl">
+        <div className="flex-1 max-w-xl md:inline hidden">
           <ul className="flex justify-around">
+            <li>
+              <Link href="/">
+                <a className="uppercase hover:underline">HOME</a>
+              </Link>
+            </li>
             {categories.map((category) => (
               <li key={category._id}>
-                <Link
-                  href={{
-                    pathname: "/[category]",
-                    query: { category: category.slug },
-                  }}
-                >
+                <Link href={`/${category.slug}`}>
                   <a className="uppercase hover:underline">{category.name}</a>
                 </Link>
               </li>

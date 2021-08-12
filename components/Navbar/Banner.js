@@ -1,21 +1,24 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Banner() {
   return (
     <div className="container mx-auto mt-3 flex h-24 justify-around items-center">
-      <div className="flex-1 flex justify-center">
+      <div className="hidden flex-1 md:flex justify-center">
         <button className="border-2 font-serif border-yellow-600 uppercase hover:underline shadow-md px-4">
           Subscribe
         </button>
       </div>
-      <div className="relative h-full w-48">
-        <Image
-          className="object-fill"
-          src="/SimpleBloglogo.png"
-          layout="fill"
-        />
-      </div>
-      <div className="flex-1 flex justify-center">
+      <Link href="/">
+        <div className="relative h-full w-48 cursor-pointer">
+          <Image
+            className="object-fill"
+            src="/SimpleBloglogo.png"
+            layout="fill"
+          />
+        </div>
+      </Link>
+      <div className="hidden flex-1 md:flex justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-7 w-7"

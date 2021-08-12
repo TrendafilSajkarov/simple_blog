@@ -5,6 +5,13 @@ export function getCategoryName(categories, postFromCategory) {
   return category[0].name;
 }
 
+export function getCategorySlug(categories, postFromCategory) {
+  const category = categories.filter(
+    (category) => category._id === postFromCategory
+  );
+  return category[0].slug;
+}
+
 export function getDate(date) {
   if (date) {
     let rez = date.toString();

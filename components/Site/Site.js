@@ -9,7 +9,7 @@ export default function Site({
 }) {
   const latestPost = latestPosts[0];
   return (
-    <section className="container grid grid-cols-3 gap-4 w-3/4 mx-auto">
+    <section className="container grid grid-cols-2 auto-rows-auto lg:grid-cols-3 gap-4 xl:w-3/4 max-w-screen-xl md:px-5 mx-auto">
       <MainContent
         latestPost={latestPost}
         latestPosts={latestPosts}
