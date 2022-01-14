@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 
 export default async function helloAPI(req, res) {
   const client = new MongoClient(
-    "mongodb+srv://trendafil2:databaza0@project0.gz2vh.mongodb.net/test?retryWrites=true&w=majority",
+    "mongodb+srv://<username>:<password>@project0.gz2vh.mongodb.net/test?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
