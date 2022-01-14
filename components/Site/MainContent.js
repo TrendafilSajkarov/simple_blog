@@ -1,16 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
+import Pagination from "../Pagination/Pagination";
 
 import { getCategoryName, getDate, getCategorySlug } from "../../utils/utils";
 
-export default function MainContent({ latestPost, latestPosts, categories }) {
+export default function MainContent({
+  latestPost,
+  latestPosts,
+  categories,
+  pages,
+  currentPage,
+}) {
   return (
     <main className="col-span-2 grid grid-cols-1 auto-rows-auto">
       <h4 className="uppercase font-serif text-yellow-600 text-xs mb-3 px-4">
         Latest Posts
       </h4>
       {latestPost && (
-        <article className="prose-sm px-1 group text-center row-span-1 h-screen h-750 max-h-1000 min-h-600 flex flex-col items-center justify-center">
+        <article className="prose-sm px-1 group text-center row-span-1 h-screen max-h-1000 min-h-600 flex flex-col items-center justify-center">
           <div className="relative w-full h-2/3 shadow-md">
             <Image
               src={latestPost.featuredImage}
@@ -119,6 +126,7 @@ export default function MainContent({ latestPost, latestPosts, categories }) {
           );
         })}
       </section>
+      {pages > 0 && <Pagination pages={pages} currentPage={currentPage} />}
     </main>
   );
 }

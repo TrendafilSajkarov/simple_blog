@@ -2,16 +2,17 @@ import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import AsideContent from "../../components/Site/AsideContent";
 import { getCategorySlug, getDate, getCategoryName } from "../../utils/utils";
+import marked from "marked";
 
 import Image from "next/image";
 
 export default function PostPage({ categories, singlePost }) {
   return (
-    <div>
+    <div className="">
       <Navbar categories={categories.categories} aboutUs={categories.aboutUs} />
 
       <section className="container max-w-screen-xl mx-auto my-6">
-        <article className="prose-lg px-1 md:px-4 flex flex-col">
+        <article className="prose-lg px-1 md:px-4 flex flex-col items-center">
           <div className="relative w-full h-screen max-h-600 shadow-md">
             <Image
               src={singlePost.singlePost[0].featuredImage}
@@ -41,7 +42,12 @@ export default function PostPage({ categories, singlePost }) {
               </div>
             </div>
           </div>
-          <p className="text-base pt-5">{singlePost.singlePost[0].content}</p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: marked(singlePost.singlePost[0].content),
+            }}
+            className="prose mt-16"
+          ></div>
         </article>
         {/* <AsideContent
           aboutUs={categories.aboutUs}

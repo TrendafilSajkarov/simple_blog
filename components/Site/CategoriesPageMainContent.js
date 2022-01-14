@@ -1,13 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import Pagination from "../Pagination/Pagination";
 
-import { getCategoryName, getDate, getCategorySlug } from "../../utils/utils";
+import { getDate } from "../../utils/utils";
 
-export default function CategoriesPageMainContent({ latestPosts, categories }) {
+export default function CategoriesPageMainContent({
+  latestPosts,
+  currentCategory,
+  pages,
+  currentPage,
+}) {
   return (
     <main className="col-span-2 flex flex-col px-1">
       <h4 className="uppercase font-serif text-yellow-600 text-xs">
-        Latest Posts
+        Latest Posts from {currentCategory.name}
       </h4>
 
       <section className="flex flex-col">
@@ -32,13 +38,9 @@ export default function CategoriesPageMainContent({ latestPosts, categories }) {
                 </div>
                 <div className="flex flex-1 flex-col justify-between items-center font-serif">
                   <h4 className="uppercase text-yellow-600 text-xs ">
-                    {getCategoryName(categories, post.fromCategory)}
+                    {currentCategory.name}
                   </h4>
-                  <Link
-                    href={`/${getCategorySlug(categories, post.fromCategory)}/${
-                      post.slug
-                    }`}
-                  >
+                  <Link href={`/${currentCategory.slug}/${post.slug}`}>
                     <a>
                       <h3 className="text-lg font-medium group-hover:underline">
                         {post.title}
@@ -48,11 +50,7 @@ export default function CategoriesPageMainContent({ latestPosts, categories }) {
 
                   <p className="text-xs text-gray-400">By Admin | 3 min read</p>
                   <p className="text-base line-clamp-5">{post.excerpt}</p>
-                  <Link
-                    href={`/${getCategorySlug(categories, post.fromCategory)}/${
-                      post.slug
-                    }`}
-                  >
+                  <Link href={`/${currentCategory.slug}/${post.slug}`}>
                     <a>
                       <button className="border-2 border-yellow-600 uppercase hover:underline shadow-md px-6 py-1 mt-6 text-gray-600 text-xs">
                         Read More
@@ -63,6 +61,13 @@ export default function CategoriesPageMainContent({ latestPosts, categories }) {
               </li>
             );
           })}
+          {pages > 0 && (
+            <Pagination
+              pages={pages}
+              currentPage={currentPage}
+              category={currentCategory.slug}
+            />
+          )}
         </ul>
       </section>
     </main>

@@ -3,14 +3,14 @@ import Footer from "../../components/Footer/Footer";
 import AsideContent from "../../components/Site/AsideContent";
 import CategoriesPageMainContent from "../../components/Site/CategoriesPageMainContent";
 
-export default function CategoryPage({ data, categories }) {
+export default function CategoryPage({ data, categories, currentCategory }) {
   return (
     <div>
       <Navbar categories={categories.categories} aboutUs={categories.aboutUs} />
       <section className="container grid grid-cols-2 auto-rows-auto w-11/12 lg:grid-cols-3 gap-4 xl:w-3/4 max-w-screen-xl mx-auto my-6">
         <CategoriesPageMainContent
           latestPosts={data.posts}
-          categories={categories.categories}
+          currentCategory={currentCategory}
         />
         <AsideContent
           aboutUs={categories.aboutUs}
@@ -33,6 +33,10 @@ export async function getStaticProps(context) {
 
   const categories = await res1.json();
 
+  const currentCategory = categories.categories.filter(
+    (category) => category.slug === context.params.category
+  )[0];
+
   if (!data) {
     return {
       notFound: true,
@@ -40,7 +44,7 @@ export async function getStaticProps(context) {
   }
 
   return {
-    props: { data, categories }, // will be passed to the page component as props
+    props: { data, categories, currentCategory }, // will be passed to the page component as props
   };
 }
 

@@ -22,6 +22,7 @@ export default async function helloAPI(req, res) {
     .collection("posts")
     .find({ fromCategory: category[0]._id })
     .sort({ _id: -1 })
+    .skip(parseInt(req.query.page + "0"))
     .limit(10)
     .toArray();
 
